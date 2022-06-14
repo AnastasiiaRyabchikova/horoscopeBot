@@ -12,8 +12,20 @@ fs.readdirSync('node_modules')
   });
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index.ts',
   target: 'node16.13',
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
+    ],
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
+  },
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
